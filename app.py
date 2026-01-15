@@ -21,7 +21,7 @@ app = FastAPI(title="DKN API")
 origins = [
     "https://stingersonx228.github.io",
     "https://stingersonx228.github.io/DKN-Site",
-    "https://dkn-backend.onrender.com",
+    "https://dkn-newback.onrender.com",
     "http://localhost:5500",
 ]
 app.add_middleware(
@@ -103,3 +103,4 @@ def root():
 def predict_endpoint(payload: PredictIn):
     return predict(payload)
     return {"status": "ok", "info": "DKN API"}
+
