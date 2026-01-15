@@ -5,5 +5,7 @@ torch
 numpy
 pandas
 scikit-learn
-python-multipartmatplotlib
+python-multipart
+matplotlib
+
 
