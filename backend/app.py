@@ -6,13 +6,14 @@ import torch
 import numpy as np
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 
-from dkn_model import DKN, preprocess
+from .dkn_model import DKN, preprocess
 
 
-MODEL_PATH = "dkn_model.pt"   
-DEVICE = "cpu"                
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "dkn_model.pt")
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"                
 
 
 app = FastAPI(title="DKN API")
@@ -98,9 +99,3 @@ def predict(payload: PredictIn):
 @app.get("/")
 def root():
     return {"status": "ok", "message": "DKN API is running"}
-
-@app.post("/predict")
-def predict_endpoint(payload: PredictIn):
-    return predict(payload)
-    return {"status": "ok", "info": "DKN API"}
-
