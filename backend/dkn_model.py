@@ -274,8 +274,8 @@ def main(args):
     if HAS_SHAP:
         explainer = shap.DeepExplainer(model, torch.tensor(X_train[:200], dtype=torch.float32).to(device))
         shap_values = explainer.shap_values(
-    torch.tensor(X_test[:100], dtype=torch.float32).to(device),
-    check_additivity=False
+            torch.tensor(X_test[:100], dtype=torch.float32).to(device),
+            check_additivity=False
 )
 
         # Простейший вывод
@@ -295,3 +295,4 @@ if __name__ == "__main__":
     parser.add_argument('--output', type=str, default='dkn_model.pt', help='Output model path')
     args = parser.parse_args()
     main(args)
+
