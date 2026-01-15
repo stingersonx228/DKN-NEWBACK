@@ -19,19 +19,19 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 app = FastAPI(title="DKN API")
 
 
-origins = [
-    "https://stingersonx228.github.io",
-    "https://stingersonx228.github.io/DKN-Site",
-    "https://dkn-newback.onrender.com",
-    "http://localhost:5500",
-]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
+    allow_origins=[
+        "https://stingersonx228.github.io",
+        "https://stingersonx228.github.io/DKN-Site",
+        "https://dkn-newback.onrender.com",
+        "http://localhost:5500",
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 class PredictIn(BaseModel):
@@ -99,4 +99,5 @@ def predict(payload: PredictIn):
 @app.get("/")
 def root():
     return {"status": "ok", "message": "DKN API is running"}
+
 
