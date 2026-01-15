@@ -43,7 +43,7 @@ class PredictOut(BaseModel):
 
 
 print("Loading model...")
-model_data = torch.load(MODEL_PATH, map_location=DEVICE)
+model_data = torch.load(MODEL_PATH, map_location=DEVICE, weights_only=False)
 
 if isinstance(model_data, dict) and "model_state" in model_data:
     fit_objs = model_data.get("fit_objs", None)
@@ -99,3 +99,4 @@ def predict(payload: PredictIn):
 @app.get("/")
 def root():
     return {"status": "ok", "message": "DKN API is running"}
+
